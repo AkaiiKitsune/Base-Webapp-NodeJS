@@ -1,0 +1,55 @@
+include ./mixins
+
+doctype html
+html
+    head
+        link(rel="stylesheet", href="/css/style.css")
+
+        //-   Boot strap and stuff   -//
+        link(rel="stylesheet", href="/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
+        link(rel="stylesheet", href="/css/bootstrap-theme.min.css", integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r", crossorigin="anonymous")
+        script(src="/js/jquery-2.2.4.js", integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=", crossorigin="anonymous")
+        script(src="/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
+        script(src="/js/main.js")
+        //----------------------------//
+
+        title Add Article
+    
+    body
+        .container
+            +nav("Jade / Node.js test", "dropdown_menu")
+                +nav_block()
+                    +nav_item( "/") Home
+
+                if user
+                    +nav_block()
+                        +nav_item( "/articles/add" ) Add Article
+
+                +nav_block("navbar-right")
+                    if user
+                        +nav_item( "/users/logout" ) Logout
+                    else
+                        +nav_item_dropdown( "#")( label="User")
+                            +nav_item( "/users/register" ) Register
+                            +nav_item( "/users/login" ) Login
+
+
+
+
+            //Messages d'etat
+            != messages('message', locals)
+
+            //La page est insérée ici
+            block content
+            
+            //Erreurs
+            br
+            if errors
+                each error, i in errors
+                    div(class="alert alert-danger") #{error.msg}
+
+            //Footer
+            br
+            hr
+            footer
+                p Copyright &copy; 2020
