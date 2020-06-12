@@ -37,16 +37,15 @@ router.post('/register', [
         });
     }else{
         const username = req.body.username;
-        const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
         const password2 = req.body.password2;
 
         let newUser = new User({
-            name:name,
             email:email,
             username:username,
-            password:password
+            password:password,
+            missionnaire:'000000000000'
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -74,7 +73,7 @@ router.get('/login', (req, res) => {
 // Login Form (POST)
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect:'/',
+        successRedirect:'/users/profile',
         failureRedirect:'/users/login',
         failureFlash: true
     })(req, res, next);
@@ -83,18 +82,18 @@ router.post('/login', (req, res, next) => {
 // Profile (GET)
 router.get('/profile', ensureAuthenticated, (req, res) => {
     // Verifie si un missionnaire est attribué a l'utilisateur
-    User.findOne({ '_id': req.user._id }, 'missionnaire', function (err, person) {
+    User.findById(req.user._id, (err, person) => {
         if (err) return console.error(err);
         //Si on trouve un id, on recupere ensuite les infos de celui-ci
-        Missionnaire.findOne({ '_id': person.missionnaire }, function (err, person) {
+        Missionnaire.findById(person.missionnaire, (err, person) => {
             if (err) return console.error(err);
-            console.log(person)
+            if(!person) req.flash('danger', 'Veuillez renseigner vos informations');
 
             //Et on Affiche la page
             res.render('users/profile', {
                 title: "Profil de " + req.user.name,
                 user: req.user,
-                    missionnaire: person
+                missionnaire: person
             });
         });
     });
@@ -114,23 +113,37 @@ router.post('/profile/edit', ensureAuthenticated, (req, res) => {
     // Verifie si un missionnaire est attribué a l'utilisateur
     User.findOne({ '_id': req.user._id }, 'missionnaire', function (err, person) {
         if (err) return handleError(err);
-        console.log('%s', person.missionnaire);
+
+        //On supprime un eventuel ancien profil
+        Missionnaire.deleteOne({ '_id': person.missionnaire }, function (err) {if (err) return handleError(err);});
+        //Ensuite on crée un objet missionnaire
+        missionnaire = new Missionnaire();
+        User.updateOne({'_id': req.user._id }, {'missionnaire' : missionnaire._id}, function(err) {
+            console.error(err);
+        });
+
+        //On renseigne ses valeurs
+        missionnaire.nom = req.body.nom;
+        missionnaire.prenom = req.body.prenom;
+        missionnaire.adresse = req.body.adresse;
+        missionnaire.dateNaissance = req.body.dateNaissance;
+        missionnaire.telephone = req.body.telephone;
+        missionnaire.numSecuriteSociale = req.body.numSecuriteSociale;
+        missionnaire.adresseFacturation = req.body.adresseFacturation;
+        missionnaire.numSiret = req.body.numSiret;
+        missionnaire.nomEntreprise = req.body.nomEntreprise;
+        missionnaire.adresseEntreprise = req.body.adresseEntreprise;
+        missionnaire.createur = req.user._id;
+
+        missionnaire.save((err) => {
+            if(err) {
+                console.log(err);
+            } else {
+                req.flash('success', 'Profil mis a jour');
+                res.redirect('/users/profile');
+            }
+        });
     });
-
-    let missionnaire = new Missionnaire();
-    missionnaire.nom = req.body.nom;
-    missionnaire.prenom = req.body.prenom;
-    missionnaire.adresse = req.body.adresse;
-    missionnaire.dateNaissance = req.body.dateNaissance;
-    missionnaire.telephone = req.body.telephone;
-    missionnaire.numSecuriteSociale = req.body.numSecuriteSociale;
-    missionnaire.adresseFacturation = req.body.adresseFacturation;
-
-    missionnaire.numSiret = req.body.numSiret;
-    missionnaire.nomEntreprise = req.body.nomEntreprise;
-    missionnaire.adresseEntreprise = req.body.adresseEntreprise;
-
-    missionnaire.createur = req.user._id;
 });
 
 

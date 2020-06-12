@@ -2,10 +2,6 @@ let mongoose = require('mongoose');
 
 //User schema
 let userSchema = mongoose.Schema({
-    name:{
-        type: String,
-        required: true
-    },
     email:{
         type: String,
         required: true
@@ -20,7 +16,7 @@ let userSchema = mongoose.Schema({
     }, 
     missionnaire:{
         type: String,
-        required: false
+        required: true
     }
 });
 

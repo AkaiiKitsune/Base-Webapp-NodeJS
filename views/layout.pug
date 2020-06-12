@@ -34,7 +34,7 @@ html
                             a.nav-link(href='/missions/add') Ajouter une mission 
                 +nav_block_right()
                     if user
-                        +nav_item_dropdown(user.name)
+                        +nav_item_dropdown(user.username)
                             .dropdown-menu(aria-labelledby='navbarDropdown')
                                 a.dropdown-item(href='/users/profile') Profil
                                 .dropdown-divider

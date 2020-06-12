@@ -10,7 +10,7 @@ block content
             .col
                 .card
                     .card-header
-                        h2 Missionnaire
+                        h4 Missionnaire
                     .card-body
                         h2 #{missionnaire.prenom} #{missionnaire.nom}
                         small
@@ -37,21 +37,19 @@ block content
             .col
                 .card
                     .card-header
-                        h2 Compagnie
+                        h4 Compagnie
                     .card-body
-                        .row
-                            .col-sm-6.col-md-8
-                                p
-                                    i.fa.fa-address-book 
-                                    | #{missionnaire.numSiret}
-                                    br
+                        p
+                            i.fa.fa-address-book 
+                            | #{missionnaire.numSiret}
+                            br
 
-                                    i.fa.fa-signature
-                                    | #{missionnaire.nomEntreprise}
-                                    br
+                            i.fa.fa-signature
+                            | #{missionnaire.nomEntreprise}
+                            br
 
-                                    i.fa.fa-address-card
-                                    | #{missionnaire.adresseEntreprise}
+                            i.fa.fa-address-card
+                            | #{missionnaire.adresseEntreprise}
                 
     .btn
         a(href="/users/profile/edit")
