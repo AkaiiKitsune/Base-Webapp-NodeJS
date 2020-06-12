@@ -37,7 +37,7 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
             console.error(err);
         }else{
             res.render('articles/edit_article', {
-                title: "Edit",
+                title: "Edit " + article.title,
                 article: article
             });
         }

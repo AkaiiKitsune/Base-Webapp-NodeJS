@@ -1,0 +1,17 @@
+extends ../layout
+
+block head
+    link(rel="stylesheet", href="/css/daterangepicker.css")
+    script(src="/js/moment.min.js")
+    script(src="/js/daterangepicker.min.js")
+    title #{title}
+
+block content
+    h1 #{title}
+    form(method='POST', action='/missions/add')
+        #form-group
+            label Nom:
+            input.form-control(name='nom', type='text' placeholder="John" required)
+        
+        hr
+        input.btn.btn-primary(type='submit', value='submit')

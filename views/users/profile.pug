@@ -1,0 +1,61 @@
+extends ../layout
+
+block head
+    title #{title}
+
+
+block content
+    .row
+        if missionnaire
+            .col
+                .card
+                    .card-header
+                        h2 Missionnaire
+                    .card-body
+                        h2 #{missionnaire.prenom} #{missionnaire.nom}
+                        small
+                            cite(title="#{user.email}")
+                            | #{user.email} 
+                            i.fa.fa-envelope
+                            hr
+                        p
+                            i.fa.fa-address-card
+                            | #{missionnaire.adresse}
+                            br
+
+                            i.fa.fa-gift
+                            | #{missionnaire.dateNaissance}
+                            br
+
+                            i.fa.fa-phone
+                            | 0#{missionnaire.telephone}
+                            hr
+
+                            | Sécurité Sociale :
+                            | #{missionnaire.numSecuriteSociale}
+                            br
+            .col
+                .card
+                    .card-header
+                        h2 Compagnie
+                    .card-body
+                        .row
+                            .col-sm-6.col-md-8
+                                p
+                                    i.fa.fa-address-book 
+                                    | #{missionnaire.numSiret}
+                                    br
+
+                                    i.fa.fa-signature
+                                    | #{missionnaire.nomEntreprise}
+                                    br
+
+                                    i.fa.fa-address-card
+                                    | #{missionnaire.adresseEntreprise}
+                
+    .btn
+        a(href="/users/profile/edit")
+            if missionnaire
+                button.btn.btn-primary(type="button") Editer le profil
+            else 
+                button.btn.btn-danger(type="button") Creer le profil

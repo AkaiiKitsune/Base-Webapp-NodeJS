@@ -5,36 +5,43 @@ html
     head
         link(rel="stylesheet", href="/css/style.css")
 
-        //-   Boot strap and stuff   -//
-        link(rel="stylesheet", href="/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
-        link(rel="stylesheet", href="/css/bootstrap-theme.min.css", integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r", crossorigin="anonymous")
-        script(src="/js/jquery-2.2.4.js", integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=", crossorigin="anonymous")
-        script(src="/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
+        //-   Bootstrap and stuff   -//
+        script(src="/js/jquery-3.5.1.min.js")
+        script(src="/js/popper.min.js")
+        script(src="/js/bootstrap.min.js")
+
         script(src="/js/main.js")
+        
+        link(rel="stylesheet", href="/css/font-awesome.css")
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
         //----------------------------//
 
-        title Add Article
+        // Page stuff
+        block head
+    
     
     body
         .container
-            +nav("Jade / Node.js test", "dropdown_menu")
-                +nav_block()
-                    +nav_item( "/") Home
+            +nav("OMP - Pannel")
+                +nav_block_left()
+                    +nav_item()
+                        a.nav-link(href='/') Home 
 
-                if user
-                    +nav_block()
-                        +nav_item( "/articles/add" ) Add Article
-
-                +nav_block("navbar-right")
                     if user
-                        +nav_item( "/users/logout" ) Logout
+                        +nav_item()
+                            a.nav-link(href='/missionnaires/add') Ajouter un missionnaire
+                        +nav_item()
+                            a.nav-link(href='/missions/add') Ajouter une mission 
+                +nav_block_right()
+                    if user
+                        +nav_item_dropdown(user.name)
+                            .dropdown-menu(aria-labelledby='navbarDropdown')
+                                a.dropdown-item(href='/users/profile') Profil
+                                .dropdown-divider
+                                a.dropdown-item(href='/users/logout') Déconnexion
                     else
-                        +nav_item_dropdown( "#")( label="User")
-                            +nav_item( "/users/register" ) Register
-                            +nav_item( "/users/login" ) Login
-
-
-
+                        +nav_item()
+                            a.nav-link(href='/users/login') Se connecter
 
             //Messages d'etat
             != messages('message', locals)
@@ -49,7 +56,6 @@ html
                     div(class="alert alert-danger") #{error.msg}
 
             //Footer
-            br
             hr
             footer
                 p Copyright &copy; 2020

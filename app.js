@@ -15,6 +15,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
+const secretSirenAPI = require('./config/secrets');
  
 // Connect to database
 mongoose.connect(config.database, {
@@ -73,10 +74,24 @@ app.use(passport.session());
 // Routes ----------------------------------------------
 
 
+// Gestion utilisateur
 app.get('*', (req, res, next) => {
     res.locals.user = req.user || null;
     next();
 });
+
+// Requetes Siret
+app.get('/api/:id', (req, res) => {
+    var request = require('request');
+    request({
+      method: 'GET',
+      uri: 'https://api.insee.fr/entreprises/sirene/V3/siret/' + req.params.id,
+      headers: {'Authorization': "Bearer " + secretSirenAPI.secretSirenAPI}
+    }, (error, response, body) => {
+        let json = JSON.parse(body);
+        res.send(json);
+    })
+  });
 
 // Home route
 app.get('/', (req, res) => {
@@ -93,11 +108,14 @@ app.get('/', (req, res) => {
 });
 
 // Route Files
+let missionnaires = require('./routes/missionnaires');
+let missions = require('./routes/missions');
 let articles = require('./routes/articles');
 let users = require('./routes/users');
+app.use('/missionnaires', missionnaires);
+app.use('/missions', missions);
 app.use('/articles', articles);
 app.use('/users', users);
-
 
 // Handle 404
 app.use(function(req, res) {

@@ -1,0 +1,75 @@
+extends ../layout 
+
+block head
+    title #{title}
+
+block content
+    form(method='POST', action='/users/profile/edit')
+        .row
+            //Colonne de Gauche
+            .col
+                h3.dark-grey Missionnaire
+                //Nom
+                .input-group.col.mb-3
+                    .input-group-prepend
+                        .input-group-text Nom
+                    input.form-control(name='nom', type='text', placeholder="John", required)
+                //Prénom
+                .input-group.col.mb-3
+                    .input-group-prepend
+                        .input-group-text Prénom
+                    input.form-control(name='prenom', type='text', placeholder="Doe", required)
+                //Adresse
+                .input-group.col.mb-3
+                    .input-group-prepend
+                        .input-group-text Adresse
+                    input.form-control(name='adresse', type='text', required)
+                //Anniversaire + Telephone
+                .col.mb-3
+                    .row
+                        .input-group.col
+                            input.form-control(name='dateNaissance', type='date', required)
+                        .input-group.col
+                            input.form-control(name='telephone', type='tel', placeholder="06XXXXXXXX", pattern="[0-9]{10}", maxlength=10, required)
+                            .input-group-append
+                                .input-group-text 
+                                    .fas.fa-phone
+                //Sécurité sociale
+                .input-group.col
+                    .input-group-prepend
+                        .input-group-text Sécurité sociale
+                    input.form-control(name='numSecuriteSociale', type='text', pattern="[0-9]{15}", maxlength=15, required)
+                //Séparateur
+                .col
+                    hr
+            
+            //Colonne de Droite
+            .col
+                h3.dark-grey Compagnie
+
+                .input-group.col.mb-3
+                    input.form-control(id='numSiret', name='numSiret', type='text', placeholder="Numéro Siret (14 chiffres)", pattern="[0-9]{14}", required, maxlength=14)
+                    div.input-group-append
+                        button.btn.btn-secondary(id='rechercherSiret', type='button')
+                            .fas.fa-search
+                        .input-group-text Siret
+                .input-group.col.mb-3
+                    input.form-control(id='numSiren', name='numSiren', type='text', required, readonly)
+                    .input-group-prepend
+                        .input-group-text Siren
+                .input-group.col.mb-3
+                    input.form-control(id='nomEntreprise', name='nomEntreprise', type='text', required, readonly)
+                    .input-group-prepend
+                        .input-group-text Nom
+                .input-group.col.mb-3
+                    input.form-control(id='adresseEntreprise', name='adresseEntreprise', type='text', required, readonly)
+                    .input-group-prepend
+                        .input-group-text Adresse
+                .input-group.col.mb-3
+                
+                .col-md-12
+                    hr
+
+                            
+            .col-md-12
+                button.btn.btn-primary(id='formSubmit', type='submit' disabled) Mettre le profil a jour

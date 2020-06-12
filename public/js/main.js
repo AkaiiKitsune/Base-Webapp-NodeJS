@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    //Suppression d'article
     $('.delete-article').on('click', function(e){
         $target = $(e.target);
         const id = $target.attr('data-id');
@@ -14,4 +15,36 @@ $(document).ready(function(){
             }
         });
     });
+
+    //Recherche de numero siret
+    $("#rechercherSiret").click(function(){
+        let siret = $('#numSiret').val();
+        $('#nomEntreprise').val(" ");
+        $('#adresseEntreprise').val(" ");
+        $('#numSiren').val("Numero siret invalide");
+        $('#rechercherSiret').removeClass("btn-warning");
+        $('#rechercherSiret').removeClass("btn-danger");
+        $('#rechercherSiret').addClass("btn-warning");
+        $('#formSubmit').attr("disabled", true);
+
+        $.get("/api/" + siret, (data) => {
+            console.log(data);
+
+            if(data.header.statut == 200){
+                $('#numSiren').val(data.etablissement.siren);
+                $('#nomEntreprise').val(data.etablissement.uniteLegale.denominationUniteLegale);
+                $('#adresseEntreprise').val(data.etablissement.adresseEtablissement.numeroVoieEtablissement + " " + //Numéro voie
+                                            data.etablissement.adresseEtablissement.typeVoieEtablissement + " " +  //Type voie
+                                            data.etablissement.adresseEtablissement.libelleVoieEtablissement + ", " +
+                                            data.etablissement.adresseEtablissement.codePostalEtablissement + ", " +
+                                            data.etablissement.adresseEtablissement.libelleCommuneEtablissement); //Adresse
+                $('#rechercherSiret').removeClass("btn-warning");
+                $('#rechercherSiret').addClass("btn-success");
+                $('#formSubmit').attr("disabled", false);
+            }else{
+                $('#rechercherSiret').removeClass("btn-warning");
+                $('#rechercherSiret').addClass("btn-danger");
+            }
+        });
+    }); 
 });

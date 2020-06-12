@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 // Init models
+let Missionnaire = require('../models/missionnaire');
 let User = require('../models/user');
 
 // Register Form (GET)
@@ -78,6 +79,70 @@ router.post('/login', (req, res, next) => {
         failureFlash: true
     })(req, res, next);
 });
+
+// Profile (GET)
+router.get('/profile', ensureAuthenticated, (req, res) => {
+    // Verifie si un missionnaire est attribué a l'utilisateur
+    User.findOne({ '_id': req.user._id }, 'missionnaire', function (err, person) {
+        if (err) return console.error(err);
+        //Si on trouve un id, on recupere ensuite les infos de celui-ci
+        Missionnaire.findOne({ '_id': person.missionnaire }, function (err, person) {
+            if (err) return console.error(err);
+            console.log(person)
+
+            //Et on Affiche la page
+            res.render('users/profile', {
+                title: "Profil de " + req.user.name,
+                user: req.user,
+                    missionnaire: person
+            });
+        });
+    });
+});
+
+// Profile Edit (GET)
+router.get('/profile/edit', ensureAuthenticated, (req, res) => {
+    
+    res.render('users/edit_profile', {
+        title: "Profil de " + req.user.name,
+        user: req.user
+    });
+});
+
+// Profile Edit (POST)
+router.post('/profile/edit', ensureAuthenticated, (req, res) => {
+    // Verifie si un missionnaire est attribué a l'utilisateur
+    User.findOne({ '_id': req.user._id }, 'missionnaire', function (err, person) {
+        if (err) return handleError(err);
+        console.log('%s', person.missionnaire);
+    });
+
+    let missionnaire = new Missionnaire();
+    missionnaire.nom = req.body.nom;
+    missionnaire.prenom = req.body.prenom;
+    missionnaire.adresse = req.body.adresse;
+    missionnaire.dateNaissance = req.body.dateNaissance;
+    missionnaire.telephone = req.body.telephone;
+    missionnaire.numSecuriteSociale = req.body.numSecuriteSociale;
+    missionnaire.adresseFacturation = req.body.adresseFacturation;
+
+    missionnaire.numSiret = req.body.numSiret;
+    missionnaire.nomEntreprise = req.body.nomEntreprise;
+    missionnaire.adresseEntreprise = req.body.adresseEntreprise;
+
+    missionnaire.createur = req.user._id;
+});
+
+
+//Access control
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        req.flash('danger', 'Please login');
+        res.redirect('/users/login');
+    }
+}
 
 // Logout
 router.get('/logout', (req, res) => {
