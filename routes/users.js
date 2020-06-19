@@ -91,7 +91,7 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
 
             //Et on Affiche la page
             res.render('users/profile', {
-                title: "Profil de " + req.user.name,
+                title: "Profil de " + req.user.username,
                 user: req.user,
                 missionnaire: person
             });

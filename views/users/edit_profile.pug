@@ -28,6 +28,9 @@ block content
                 .col.mb-3
                     .row
                         .input-group.col
+                            .input-group-prepend
+                                .input-group-text
+                                    .fas.fa-birthday-cake
                             input.form-control(name='dateNaissance', type='date', required)
                         .input-group.col
                             input.form-control(name='telephone', type='tel', placeholder="06XXXXXXXX", pattern="[0-9]{10}", maxlength=10, required)

@@ -7,11 +7,35 @@ block head
     title #{title}
 
 block content
-    h1 #{title}
     form(method='POST', action='/missions/add')
-        #form-group
-            label Nom:
-            input.form-control(name='nom', type='text' placeholder="John" required)
-        
-        hr
-        input.btn.btn-primary(type='submit', value='submit')
+        .card
+            .card-header
+                h4 #{title}
+            .card-body
+                .card
+                    .card-header
+                        h5 Missionnaire
+                    .card-body
+                        .row
+                            .col
+                                .input-group
+                                    .input-group-prepend
+                                        .input-group-text
+                                            .fas.fa-user-circle
+                                    input.form-control(name='username', type='text', placeholder='Nom d\'utilisateur', required readonly)
+                            .col
+                                .input-group
+                                    .input-group-prepend
+                                        .input-group-text
+                                            .fas.fa-user-circle
+                                    input.form-control(name='username', type='text', placeholder='Nom d\'utilisateur', required)
+
+                .card.my-3
+                    .card-header
+                        h5 Dates demandées
+                    .card-body
+                            
+
+            .card-footer.text-center
+                button.btn.btn-primary.mr-2(type='submit') Se connecter
+                button.btn.btn-danger(type='button', onclick="window.location.href='/users/register';") S'inscrire
