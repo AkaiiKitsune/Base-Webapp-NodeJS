@@ -12,9 +12,10 @@ block content
             .card-header
                 h4 #{title}
             .card-body
+                //Profil
                 .card
                     .card-header
-                        h5 Missionnaire
+                        h5 Votre profil
                     .card-body
                         .row
                             .col
@@ -22,20 +23,45 @@ block content
                                     .input-group-prepend
                                         .input-group-text
                                             .fas.fa-user-circle
-                                    input.form-control(name='username', type='text', placeholder='Nom d\'utilisateur', required readonly)
+                                    input.form-control(name='username', type='text', placeholder=missionnaire.nom, required readonly)
                             .col
                                 .input-group
-                                    .input-group-prepend
-                                        .input-group-text
-                                            .fas.fa-user-circle
-                                    input.form-control(name='username', type='text', placeholder='Nom d\'utilisateur', required)
-
+                                    input.form-control(name='username', type='text', placeholder=missionnaire.prenom, required readonly)
+                
+                //Dates
                 .card.my-3
                     .card-header
                         h5 Dates demandées
                     .card-body
-                            
+                        .row
+                            .input-group.col
+                                .input-group-prepend
+                                    .input-group-text Arrivée
+                                input.form-control(name='dateArrivee', type='date', required)
+                                input.form-control(name='heureArrivee', type='time', required)
+                            .input-group.col
+                                .input-group-prepend
+                                    .input-group-text Depart
+                                input.form-control(name='dateArrivee', type='date', required)
+                                input.form-control(name='heureDepart', type='time', required)
+
+                //Moyens de transport
+                .card.my-3
+                    .card-header
+                        h5 Moyen de transport
+                    .card-body
+
+                //Missionnaires
+                .card.my-3
+                    .card-header
+                        h5 Missionnaires
+                    .card-body
+                        .row
+                            .col
+                                select.selectpicker(multiple data-live-search="true")
+                                    option(data-tokens="ketchup mustard") Hot Dog, Fries and a Soda
+                                    option(data-tokens="mustard") Burger, Shake and a Smile
+                                    option(data-tokens="frosting") Sugar, Spice and all things nice
 
             .card-footer.text-center
                 button.btn.btn-primary.mr-2(type='submit') Se connecter
-                button.btn.btn-danger(type='button', onclick="window.location.href='/users/register';") S'inscrire

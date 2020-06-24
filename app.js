@@ -149,4 +149,6 @@ app.listen(port, () => {
     Pug cheetcheat : https://devhints.io/pug
     Pug stuff : https://webdesign.tutsplus.com/tutorials/baking-bootstrap-snippets-with-jade--cms-22798
     Passport DOC : http://www.passportjs.org/docs/
+
+    API Sirene : https://api.insee.fr/catalogue/
 */

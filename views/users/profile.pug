@@ -51,9 +51,8 @@ block content
                             i.fa.fa-address-card
                             | #{missionnaire.adresseEntreprise}
                 
-    .btn
-        a(href="/users/profile/edit")
-            if missionnaire
-                button.btn.btn-primary(type="button") Editer le profil
-            else 
-                button.btn.btn-danger(type="button") Creer le profil
+    a(href="/users/profile/edit")
+        if missionnaire
+            button.btn.btn-primary.my-3(type="button") Editer le profil
+        else 
+            button.btn.btn-danger.my-3(type="button") Creer le profil

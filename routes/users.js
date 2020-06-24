@@ -82,8 +82,7 @@ router.post('/login', (req, res, next) => {
 // Profile (GET)
 router.get('/profile', ensureAuthenticated, (req, res) => {
     // Verifie si un missionnaire est attribué a l'utilisateur
-    User.findById(req.user._id, (err, person) => {
-        if (err) return console.error(err);
+    User.findById(req.user._id, (err, person) => { if (err) return console.error(err);
         //Si on trouve un id, on recupere ensuite les infos de celui-ci
         Missionnaire.findById(person.missionnaire, (err, person) => {
             if (err) return console.error(err);
@@ -101,26 +100,39 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
 
 // Profile Edit (GET)
 router.get('/profile/edit', ensureAuthenticated, (req, res) => {
-    
-    res.render('users/edit_profile', {
-        title: "Profil de " + req.user.name,
-        user: req.user
+    User.findById(req.user._id, (err, person) => { if (err) return console.error(err);
+        //Si on trouve un id, on recupere ensuite les infos de celui-ci
+        Missionnaire.findById(person.missionnaire, (err, person) => {
+            if (err) return console.error(err);
+
+            let cardtitle = "Edition du profil";
+
+            if(!person) {
+                cardtitle = 'Creation du profil';
+                person = new Missionnaire()
+            }
+
+            res.render('users/edit_profile', {
+                title: "Profil de " + req.user.username,
+                cardtitle: cardtitle,
+                user: req.user,
+                missionnaire: person
+            });
+        });
     });
 });
 
 // Profile Edit (POST)
 router.post('/profile/edit', ensureAuthenticated, (req, res) => {
     // Verifie si un missionnaire est attribué a l'utilisateur
-    User.findOne({ '_id': req.user._id }, 'missionnaire', function (err, person) {
-        if (err) return handleError(err);
+    User.findOne({ '_id': req.user._id }, 'missionnaire', (err, person) => { if (err) return console.error(err);
 
         //On supprime un eventuel ancien profil
-        Missionnaire.deleteOne({ '_id': person.missionnaire }, function (err) {if (err) return handleError(err);});
+        Missionnaire.deleteOne({ '_id': person.missionnaire }, (err) => { if (err) return console.error(err); });
         //Ensuite on crée un objet missionnaire
         missionnaire = new Missionnaire();
-        User.updateOne({'_id': req.user._id }, {'missionnaire' : missionnaire._id}, function(err) {
-            console.error(err);
-        });
+        
+        User.updateOne({'_id': req.user._id }, {'missionnaire' : missionnaire._id}, (err) => { if (err) return console.error(err); });
 
         //On renseigne ses valeurs
         missionnaire.nom = req.body.nom;
@@ -136,9 +148,8 @@ router.post('/profile/edit', ensureAuthenticated, (req, res) => {
         missionnaire.createur = req.user._id;
 
         missionnaire.save((err) => {
-            if(err) {
-                console.log(err);
-            } else {
+            if(err) { console.error(err); } 
+            else {
                 req.flash('success', 'Profil mis a jour');
                 res.redirect('/users/profile');
             }

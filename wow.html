@@ -1,28 +1,14 @@
-<form>
-  <div class="form-row align-items-center">
-    <div class="col-sm-3 my-1">
-      <label class="sr-only" for="inlineFormInputName">Name</label>
-      <input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
-    </div>
-    <div class="col-sm-3 my-1">
-      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">@</div>
-        </div>
-        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
-      </div>
-    </div>
-    <div class="col-auto my-1">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
-        <label class="form-check-label" for="autoSizingCheck2">
-          Remember me
-        </label>
-      </div>
-    </div>
-    <div class="col-auto my-1">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+<div class="row">
+  <div class="col-sm-3">
+      <!-- Using data attributes -->
+      <select name="foods" data-selectr-opts='{ "title": "Your Expertise? (select max 5)", "placeholder": "Search skills", "maxSelection": 5 }'  multiple>
+          <option data-selectr-color="rgb(1000, 163, 150)" value="Bootstrap">Bootstrap Framework</option>
+          <option data-selectr-color="rgb(255, 105, 158)" value="jQuery" selected>jQuery</option>
+          <option data-selectr-color="rgb(155, 0, 133)" value="HTML">HTML</option>
+          <option data-selectr-color="rgb(185, 48, 122)" value="CSS">CSS</option>
+          <option data-selectr-color="rgb(123, 182, 101)" value="PHP" selected>PHP</option>
+          <option data-selectr-color="rgb(229, 183, 55)" value="MySQL">MySQL</option>
+          <option data-selectr-color="rgb(135, 214, 139)" value="ReactJS">ReactJS</option>
+      </select>
   </div>
-</form>
+</div>
