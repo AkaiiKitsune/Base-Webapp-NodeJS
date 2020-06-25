@@ -13,12 +13,16 @@ router.get('/add', ensureAuthenticated, (req, res) => {
         if (err) return console.error(err);
         //Si on trouve un id, on recupere ensuite les infos de celui-ci
         Missionnaire.findById(person.missionnaire, (err, person) => {
-            if (err) return console.error(err);
-            res.render('missions/add_mission', {
-                title: "Ajouter une mission",
-                user: req.user,
-                missionnaire: person
-            });
+            Missionnaire.find({}).then(function (users) {
+                    if (err) return console.error(err);
+                    
+                    res.render('missions/add_mission', {
+                        title: "Ajouter une mission",
+                        user: req.user,
+                        missionnaire: person,
+                        missionnaires: users
+                    });
+                });
         });
     });
 });
