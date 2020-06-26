@@ -57,7 +57,7 @@ block content
                             if missionnaires
                                 select.selectpicker(data-live-search="true", id="selecteurMissionnaire")
                                     each missionnaire, i in missionnaires
-                                        <option id=#{missionnaire._id} nom=#{missionnaire.nom} prenom=#{missionnaire.prenom} data-tokens="#{missionnaire.nom} #{missionnaire.prenom} #{missionnaire.telephone} #{missionnaire.nomEntreprise} #{missionnaire.adresseEntreprise} #{missionnaire.numSiret}"> #{missionnaire.nom} #{missionnaire.prenom}</option>
+                                        <option id=#{missionnaire._id} nom=#{missionnaire.nom} prenom=#{missionnaire.prenom} entreprise=#{missionnaire.nomEntreprise} data-tokens="#{missionnaire.nom} #{missionnaire.prenom} #{missionnaire.telephone} #{missionnaire.nomEntreprise} #{missionnaire.adresseEntreprise} #{missionnaire.numSiret}"> #{missionnaire.nom} #{missionnaire.prenom}</option>
 
                             button.btn.btn-primary.mr-2(id='addMissionnaire', type='button') Add
 
@@ -67,7 +67,7 @@ block content
                         tr
                             th Prénom
                             th Nom
-                            th Email
+                            th Entreprise
                             th
                     tbody(id='missionnaireList')
                         //Missionnaires Injectés ici par le script jquery

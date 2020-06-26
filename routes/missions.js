@@ -7,23 +7,20 @@ let Missionnaire = require('../models/missionnaire');
 let User = require('../models/user');
 
 
-// Add missionnaire route (GET)
+// Add mision route (GET)
 router.get('/add', ensureAuthenticated, (req, res) => {
-    User.findById(req.user._id, (err, person) => {
-        if (err) return console.error(err);
-        //Si on trouve un id, on recupere ensuite les infos de celui-ci
-        Missionnaire.findById(person.missionnaire, (err, person) => {
-            Missionnaire.find({}).then(function (users) {
+    User.findById(req.user._id, (err, user) => { if (err) return console.error(err);
+        Missionnaire.findById(user.missionnaire, (err, missionnaire) => {
+            Missionnaire.find({}).then(function (missionnaires) {
                     if (err) return console.error(err);
-                    
                     res.render('missions/add_mission', {
                         title: "Ajouter une mission",
                         user: req.user,
-                        missionnaire: person,
-                        missionnaires: users
+                        missionnaire: missionnaire,
+                        missionnaires: missionnaires
                     });
                 });
-        });
+        }); 
     });
 });
 

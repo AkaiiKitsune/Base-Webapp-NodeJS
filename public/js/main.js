@@ -56,7 +56,7 @@ $(document).ready(function(){
             let selected = $('#selecteurMissionnaire option:selected');
             console.log(selected.attr('id'));
 
-            $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th>"+selected.attr('prenom')+"</th> <th>"+selected.attr('nom')+"</th> <th>Test</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
+            $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th>"+selected.attr('prenom')+"</th> <th>"+selected.attr('nom')+"</th> <th>"+selected.attr('entreprise')+"</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
         });
 
         $("#missionnaireList").on('click', '.deleteMissionnaire', function () {
