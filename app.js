@@ -109,12 +109,18 @@ app.get('/', (req, res) => {
 
 // Route Files
 let missionnaires = require('./routes/missionnaires');
-let missions = require('./routes/missions');
-let articles = require('./routes/articles');
-let users = require('./routes/users');
 app.use('/missionnaires', missionnaires);
+
+let missions = require('./routes/missions');
 app.use('/missions', missions);
+
+let test = require('./routes/test');
+app.use('/test', test);
+
+let articles = require('./routes/articles');
 app.use('/articles', articles);
+
+let users = require('./routes/users');
 app.use('/users', users);
 
 // Handle 404

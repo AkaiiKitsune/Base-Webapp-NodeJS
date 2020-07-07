@@ -16,6 +16,12 @@ $(document).ready(function(){
             });
         });
 
+    //Update des champs d'upload
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+          });
+
     //Profil
         //Recherche de numero siret
         $("#rechercherSiret").click(() => {
