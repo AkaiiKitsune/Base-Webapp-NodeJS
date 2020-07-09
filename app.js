@@ -100,7 +100,7 @@ app.get('/', (req, res) => {
             console.error(err);
         }else{
             res.render('index', {
-                title: 'Articles',
+                title: 'Under construction',
                 articles: articles
             });
         }

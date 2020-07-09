@@ -25,18 +25,18 @@ html
     
     body
         .container
-            +nav("OMP - Pannel")
+            +nav("OMP - Panel")
                 +nav_block_left()
                     +nav_item()
                         a.nav-link(href='/') Home 
 
                     if user
-                        +nav_item()
-                            a.nav-link(href='/missionnaires/add') Ajouter un missionnaire
+                        //- +nav_item()
+                        //-     a.nav-link(href='/missionnaires/add') Ajouter un missionnaire
                         +nav_item()
                             a.nav-link(href='/missions/add') Ajouter une mission 
-                        +nav_item()
-                            a.nav-link(href='/test/') Test
+                        //- +nav_item()
+                        //-     a.nav-link(href='/test/') Test
                 +nav_block_right()
                     if user
                         +nav_item_dropdown(user.username)

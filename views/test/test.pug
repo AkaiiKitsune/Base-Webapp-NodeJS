@@ -5,6 +5,68 @@ block head
 
 block content
     form
-        .custom-file
-            input(type="file" class="custom-file-input" id="customFile")
-            label(class="custom-file-label" for="customFile") Choose file
+        .card
+            .card-header
+                h4 Schema de mission
+            .card-body
+                .row
+                    .col
+                        .input-group.mb-3
+                            .input-group-prepend
+                                .input-group-text Schéma
+                            .input-group.col
+                                input(type="file", data-show-upload="true", data-show-caption="true", class="custom-file-input", id="schema")
+                                label(class="custom-file-label" for="customFile") Choose file
+                    .col
+                        .input-group.mb-3
+                            .input-group-prepend
+                                .input-group-text Lieu D'installation
+                            select.form-control
+                                each emplacement, i in emplacements
+                                    option #{emplacement.Detail}, #{emplacement.Batiment}
+
+        .card.my-4
+            .card-header
+                h4 Photos
+            .card-body
+                input.form-control-file(id="images", name="images[]", type="file", class="file", data-show-upload="true", data-show-caption="true", multiple)
+
+        .card.my-4
+            .card-header
+                .row
+                    .col
+                        h4 Collissage
+                    .col-auto
+                        .input-group
+                            .input-group-prepend
+                                .input-group-text Ajouter un colis
+                            button.btn.btn-secondary(id='btnColis', type='button')
+                                .fas.fa-plus
+            .collisBody
+
+        .card.my-4
+            .card-header
+                h4 Alimentation Electrique
+            .card-body
+                .input-group
+                    .input-group-prepend
+                        .input-group-text Puissance Necessaire
+                    input.form-control(type="number", id="puissanceNecessaire" placeholder="Puissance en watts")
+                    .input-group-append
+                        .input-group-text Secouru
+                        .input-group-text
+                            input.form-check(type="checkbox" value="" id="defaultCheck1")
+        
+        .card.my-4
+            .card-header
+                .row
+                    .col
+                        h4 Reseau
+                    .col-auto
+                        .input-group
+                            .input-group-prepend
+                                .input-group-text Ajouter un equipement
+                            button.btn.btn-secondary(id='btnEquipement', type='button')
+                                .fas.fa-plus
+            .equipementBody
+

@@ -22,6 +22,7 @@ $(document).ready(function(){
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
           });
 
+
     //Profil
         //Recherche de numero siret
         $("#rechercherSiret").click(() => {
@@ -59,13 +60,70 @@ $(document).ready(function(){
     //Mission
         //Ajout d'un missionnaire sur l'interface creer mission
         $("#addMissionnaire").click(() => {
-            let selected = $('#selecteurMissionnaire option:selected');
-            console.log(selected.attr('id'));
+            $('#addMissionnaire').removeClass("btn-danger");
 
-            $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th>"+selected.attr('prenom')+"</th> <th>"+selected.attr('nom')+"</th> <th>"+selected.attr('entreprise')+"</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
+            var count = $("#missionnaireList").children().length;
+            if(count==0) $(".missionnaireBody").append('<div class="card-body missionnaireCardBody"><table class="table table-hover"><thead><tr><th>Nom</th><th>Prénom</th><th>Compagnie</th><th></th></tr></thead><tbody id="missionnaireList"></tbody></table></div>'); 
+            
+            let selected = $('#selecteurMissionnaire option:selected');
+
+            console.log(selected.attr('disabled'))
+
+            if(selected.attr('disabled') == null) {
+                console.log(selected.attr('id'));
+                console.log(selected);
+
+                $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th>"+selected.attr('prenom')+"</th> <th>"+selected.attr('nom')+"</th> <th>"+selected.attr('entreprise')+"</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
+
+                $("#selecteurMissionnaire option:selected").prop('disabled', true);
+            }else{
+                $('#addMissionnaire').addClass("btn-danger");
+            }
+
+            
         });
 
-        $("#missionnaireList").on('click', '.deleteMissionnaire', function () {
+        //Suppression d'une ligne
+        $(document).on("click", '.deleteMissionnaire', function() {
+            console.log(
+                $(this).closest('tr').attr('id')
+            );
+
+            console.log($("selecteurMissionnaire").find( $(this).closest('tr').attr('id') ));
+
             $(this).closest('tr').remove();
+            var count = $("#missionnaireList").children().length;
+            if(count==0) $(".missionnaireCardBody").remove();
+        });
+
+
+    //Collisage
+        //Ajout d'une ligne
+        $("#btnColis").click(() => {
+            var count = $("#collisList").children().length;
+            if(count==0) $(".collisBody").append('<div class="card-body collisCardBody"><table class="table table-hover"><thead><tr><th>Designation</th><th>Dimensions (cm)</th><th>Poids (Grammes)</th><th></th></tr></thead><tbody id="collisList"></tbody></table></div>'); 
+            $("#collisList").append("<tr>   <th><input class='form-control' type='text' placeholder='Nom / Details'></input></th>   <th class='w-25'><div class='row no-gutter'><div class='col-md-4'><input class='form-control' type='text' placeholder='H'></div><div class='col-md-4'><input class='form-control' type='text' placeholder='L'></div><div class='col-md-4'><input class='form-control' type='text' placeholder='P'></div></div></th>    <th><input class='form-control' type='number' placeholder='Poids du colis en grammes'></input></th>    <th><button class='btn btn-danger mr-2 deleteColis' type='button'><div class='fas fa-minus'></div></button></th>   </tr>");
+        });
+
+        //Suppression d'une ligne
+        $(document).on("click", ".deleteColis", function(){
+            $(this).closest('tr').remove();
+            var count = $("#collisList").children().length;
+            if(count==0) $(".collisCardBody").remove();
+        });
+
+    //Equipement
+        //Ajout d'une ligne
+        $("#btnEquipement").click(() => {
+            var count = $("#equipementList").children().length;
+            if(count==0) $(".equipementBody").append('<div class="card-body equipementCardBody"><table class="table table-hover"><thead><tr><th>Designation</th><th>Dimensions (cm)</th><th>Poids (Grammes)</th><th></th></tr></thead><tbody id="equipementList"></tbody></table></div>'); 
+            $("#equipementList").append("<tr>   <th><input class='form-control' type='text' placeholder='Nom / Details'></input></th>   <th class='w-25'><div class='row no-gutter'><div class='col-md-4'><input class='form-control' type='text' placeholder='H'></div><div class='col-md-4'><input class='form-control' type='text' placeholder='L'></div><div class='col-md-4'><input class='form-control' type='text' placeholder='P'></div></div></th>    <th><input class='form-control' type='number' placeholder='Poids du colis en grammes'></input></th>    <th><button class='btn btn-danger mr-2 deleteEquipement' type='button'><div class='fas fa-minus'></div></button></th>   </tr>");
+        });
+
+        //Suppression d'une ligne
+        $(document).on("click", ".deleteEquipement", function(){
+            $(this).closest('tr').remove();
+            var count = $("#equipementList").children().length;
+            if(count==0) $(".equipementCardBody").remove();
         });
 });

@@ -9,8 +9,11 @@ let Emplacement = require('../models/emplacement');
 
 // Add article route (GET)
 router.get('/', ensureAuthenticated, (req, res) => {
-    res.render('test/test', {
-        title: 'Add Article'
+    Emplacement.find({}).sort([['Batiment', 1]]).then( (emplacements) => {
+        res.render('test/test', {
+            title: 'Add Mission',
+            emplacements: emplacements
+        });
     });
 
     // let emplacement = new Emplacement();
