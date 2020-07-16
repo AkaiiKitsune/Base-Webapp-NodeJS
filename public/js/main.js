@@ -96,6 +96,23 @@ $(document).ready(function(){
             if(count==0) $(".missionnaireCardBody").remove();
         });
 
+        $('#btnMission').click(() => {
+            console.log('Click');
+
+            var selected = $('#missionnaireList');
+            selected.each(() => {
+                var children = $(this).find('tr');
+                var json = {};
+                console.log(children);
+                // json.type = jQuery(children[0]).text();
+                // json.title = jQuery(children[1]).text();
+                // json.description = jQuery(children[2]).find('p').text();
+                // json.price = jQuery(children[3]).find('span#price-brakes-set').text();
+                console.log(json);
+                console.log(JSON.stringify(json));
+            });
+        });
+
 
     //Collisage
         //Ajout d'une ligne
