@@ -17,6 +17,10 @@ let userSchema = mongoose.Schema({
     missionnaire:{
         type: String,
         required: true
+    },
+    admin:{
+        type: Boolean,
+        required: false
     }
 });
 

@@ -123,6 +123,9 @@ app.use('/articles', articles);
 let users = require('./routes/users');
 app.use('/users', users);
 
+let admin = require('./routes/admin');
+app.use('/admin', admin);
+
 // Handle 404
 app.use(function(req, res) {
     res.status(400);

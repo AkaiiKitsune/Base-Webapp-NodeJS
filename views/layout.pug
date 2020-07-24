@@ -32,9 +32,10 @@ html
 
                     if user
                         //- +nav_item()
-                        //-     a.nav-link(href='/missionnaires/add') Ajouter un missionnaire
+                        //- a.nav-link(href='/missionnaires/add') Ajouter un missionnaire
                         +nav_item()
                             a.nav-link(href='/missions/add') Ajouter une mission 
+
                         //- +nav_item()
                         //-     a.nav-link(href='/test/') Test
                 +nav_block_right()
@@ -43,6 +44,8 @@ html
                             .dropdown-menu(aria-labelledby='navbarDropdown')
                                 a.dropdown-item(href='/users/profile') Profil
                                 .dropdown-divider
+                                if user.admin
+                                    a.dropdown-item(href='/admin') Admin Panel
                                 a.dropdown-item(href='/users/logout') Déconnexion
                     else
                         +nav_item()

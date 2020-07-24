@@ -54,9 +54,14 @@ router.post('/add', ensureAuthenticated, ensureMissionnaire, (req, res) => {
             mission.alimSecourue = req.body.alimSecourue;
 
             mission.save((err) => {
-                if(err) { console.error(err); } 
+                if(err) { 
+                    console.error(err); 
+                    req.flash('danger', 'Erreur lors de l\'ajout de la mission');
+                    res.redirect('/users/profile');
+                } 
                 else {
-                    
+                    req.flash('success', 'Mission ajoutée');
+                    res.redirect('/users/profile');
                 }
             });
         });

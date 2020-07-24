@@ -1,0 +1,25 @@
+extends ../layout
+
+block head
+    title #{title}
+
+block content
+    form(method='POST', action='/admin/add_location')
+            .card
+                .card-header
+                    h5 Ajouter un Emplacement
+                .card-body
+                    .row
+                        .input-group.col
+                            .input-group-prepend
+                                .input-group-text Batiment
+                            select.form-control(name='batiment', required)
+                                option Ancien Batiment
+                                option Nouveau Batiment
+                                option Exterieur
+                        .input-group.col
+                            .input-group-prepend
+                                .input-group-text Detail
+                            input.form-control(name='detail', type='text', required)
+                .card-footer.text-center
+                    button.btn.btn-primary.mr-2(type='submit') Ajouter l'emplacement
