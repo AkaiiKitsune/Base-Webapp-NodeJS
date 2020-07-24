@@ -75,7 +75,7 @@ $(document).ready(function(){
 
                 $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th>"+selected.attr('prenom')+"</th> <th>"+selected.attr('nom')+"</th> <th>"+selected.attr('entreprise')+"</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
 
-                $("#selecteurMissionnaire option:selected").prop('disabled', true);
+                //$("#selecteurMissionnaire option:selected").prop('disabled', true);
             }else{
                 $('#addMissionnaire').addClass("btn-danger");
             }
@@ -99,18 +99,39 @@ $(document).ready(function(){
         $('#btnMission').click(() => {
             console.log('Click');
 
+            //Missionnaires
             var selected = $('#missionnaireList');
+            let missionnaireList;
+
             selected.each(() => {
-                var children = $(this).find('tr');
-                var json = {};
-                console.log(children);
+                missionnaireList = ($(selected).find('tr')).toArray();
+                console.log(missionnaireList);
+                
                 // json.type = jQuery(children[0]).text();
                 // json.title = jQuery(children[1]).text();
                 // json.description = jQuery(children[2]).find('p').text();
                 // json.price = jQuery(children[3]).find('span#price-brakes-set').text();
-                console.log(json);
-                console.log(JSON.stringify(json));
+                //console.log(json);
             });
+
+            console.log(missionnaireList.length);
+            
+            let missionnaires = [];
+            for (i = 0; i < missionnaireList.length; i++) missionnaires.push(missionnaireList[i].id);
+
+            console.log(missionnaires);
+
+            $.post( "#", { 
+                dateArrivee: $('#dateArrivee').val(),
+                heureArrivee: $('#heureArrivee').val(),
+                dateDepart: $('#dateDepart').val(),
+                heureDepart: $('#heureDepart').val(),
+                missionnaires: missionnaires,
+                lieuInstallation: $('#emplacement').val(),
+                alimElectrique: $('#puissanceNecessaire').val(),
+                alimSecourue: $('#secouru').prop("checked")
+            } );
+
         });
 
 

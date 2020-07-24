@@ -56,3 +56,38 @@ block content
             button.btn.btn-primary.my-3(type="button") Editer le profil
         else 
             button.btn.btn-danger.my-3(type="button") Creer le profil
+
+    if missions
+        .card
+            .card-header
+                h4 Missions
+            .card-body
+                table.table.table-hover
+                    thead
+                        tr
+                            th Participants
+                            th Date Montée
+                            th Date Descente
+                        
+                        
+                        each mission, i in missions
+                            tr
+                                thead
+                                    tbody
+                                        tr
+                                            th
+                                                each submission, i in mission.missionnaires
+                                                    row
+                                                        =submission
+                                                        br
+
+                                                //- - if (mission.missionnaires.length)
+                                                //-     - for (var i = 0; i < mission.missionnaires.length; i++) {
+                                                //-         row
+                                                //-             p= mission.missionnaires[i]
+                                                //-     - }
+
+                                            th #{mission.dateArrivee}, à #{mission.heureArrivee}h
+                                            th #{mission.dateDepart}, à #{mission.heureDepart}h
+
+

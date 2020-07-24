@@ -34,13 +34,13 @@ block content
                     .input-group.col
                         .input-group-prepend
                             .input-group-text Arrivée
-                        input.form-control(name='dateArrivee', type='date', required)
-                        input.form-control(name='heureArrivee', type='time', required)
+                        input.form-control(id='dateArrivee', type='date', required)
+                        input.form-control(id='heureArrivee', type='time', required)
                     .input-group.col
                         .input-group-prepend
                             .input-group-text Depart
-                        input.form-control(name='dateArrivee', type='date', required)
-                        input.form-control(name='heureDepart', type='time', required)
+                        input.form-control(id='dateDepart', type='date', required)
+                        input.form-control(id='heureDepart', type='time', required)
         //Moyens de transport ================================================================================================
         //- .card.my-4
         //-     .card-header
@@ -115,9 +115,9 @@ block content
                         .input-group.mb-3
                             .input-group-prepend
                                 .input-group-text Lieu D'installation
-                            select.form-control
+                            select.form-control(id="emplacement")
                                 each emplacement, i in emplacements
-                                    option #{emplacement.Detail}, #{emplacement.Batiment}
+                                    option #{emplacement.batiment}, #{emplacement.detail}
 
         //Photos ================================================================================================
         .card.my-4
@@ -155,7 +155,7 @@ block content
                     .input-group-append
                         .input-group-text Secouru
                         .input-group-text
-                            input.form-check(type="checkbox" value="" id="defaultCheck1")
+                            input.form-check(type="checkbox" value="" id="secouru")
         
         //Reseau ================================================================================================
         .card.my-4

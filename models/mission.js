@@ -2,7 +2,23 @@ let mongoose = require('mongoose');
 
 //Article schema
 let missionSchema = mongoose.Schema({
-    dates:{
+    createur:{
+        type: String,
+        required: true
+    },
+    dateArrivee:{
+        type: String,
+        required: true
+    },
+    heureArrivee:{
+        type: String,
+        required: true
+    },
+    dateDepart:{
+        type: String,
+        required: true
+    },
+    heureDepart:{
         type: String,
         required: true
     },
@@ -10,7 +26,15 @@ let missionSchema = mongoose.Schema({
         type: Array,
         required: true
     },
-    gestionnaire:{
+    lieuInstallation:{
+        type: String,
+        required: true
+    },
+    alimElectrique:{
+        type: Number,
+        required: true
+    },
+    alimSecourue:{
         type: String,
         required: true
     }

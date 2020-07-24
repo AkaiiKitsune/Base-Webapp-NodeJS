@@ -7,6 +7,7 @@ const passport = require('passport');
 // Init models
 let Missionnaire = require('../models/missionnaire');
 let User = require('../models/user');
+let Mission = require('../models/mission');
 
 // Register Form (GET)
 router.get('/register', (req, res) => {
@@ -39,7 +40,6 @@ router.post('/register', [
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
-        const password2 = req.body.password2;
 
         let newUser = new User({
             email:email,
@@ -87,13 +87,16 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
         Missionnaire.findById(person.missionnaire, (err, person) => {
             if (err) return console.error(err);
             if(!person) req.flash('danger', 'Veuillez renseigner vos informations');
-
-            //Et on Affiche la page
-            res.render('users/profile', {
-                title: "Profil de " + req.user.username,
-                user: req.user,
-                missionnaire: person
-            });
+            Mission.find( { missionnaires : person._id.toString() }, (err, missions) => {
+                
+                //Et on Affiche la page
+                res.render('users/profile', {
+                    title: "Profil de " + req.user.username,
+                    user: req.user,
+                    missionnaire: person,
+                    missions: missions
+                });
+            })
         });
     });
 });

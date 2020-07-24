@@ -2,11 +2,11 @@ let mongoose = require('mongoose');
 
 //Article schema
 let emplacementSchema = mongoose.Schema({
-    Batiment:{
+    batiment:{
         type: String,
         required: true
     },
-    Detail:{
+    detail:{
         type: String,
         required: true
     }
