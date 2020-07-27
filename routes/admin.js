@@ -40,6 +40,13 @@ router.post('/add_location', ensureAuthenticated, (req, res) => {
     });
 });
 
+// Add location route (GET)
+router.get('/attribuer_chambre', ensureAuthenticated, (req, res) => {
+    res.render('admin/attribuer_chambre', {
+        title: 'Attribution des chambres'
+    });
+});
+
 //Access control
 function ensureAuthenticated(req, res, next){
     if(req.isAuthenticated()){

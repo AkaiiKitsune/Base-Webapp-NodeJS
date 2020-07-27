@@ -9,6 +9,10 @@ let emplacementSchema = mongoose.Schema({
     detail:{
         type: String,
         required: true
+    },
+    chambre:{
+        type: Boolean,
+        required: false
     }
 });
 

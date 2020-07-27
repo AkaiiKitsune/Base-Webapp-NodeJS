@@ -31,9 +31,6 @@ db.on('error', (err) => {console.log(err);});
 // Init app
 const app = express();
  
-// Init models
-let Article = require('./models/article');
- 
 // Load view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -95,15 +92,8 @@ app.get('/api/:id', (req, res) => {
 
 // Home route
 app.get('/', (req, res) => {
-    Article.find({}, (err, articles) => {
-        if(err){
-            console.error(err);
-        }else{
-            res.render('index', {
-                title: 'Under construction',
-                articles: articles
-            });
-        }
+    res.render('index', {
+        title: 'Under construction'
     });
 });
 
@@ -113,12 +103,6 @@ app.use('/missionnaires', missionnaires);
 
 let missions = require('./routes/missions');
 app.use('/missions', missions);
-
-let test = require('./routes/test');
-app.use('/test', test);
-
-let articles = require('./routes/articles');
-app.use('/articles', articles);
 
 let users = require('./routes/users');
 app.use('/users', users);
