@@ -67,13 +67,13 @@ $(document).ready(function(){
             
             let selected = $('#selecteurMissionnaire option:selected');
 
-            console.log(selected.attr('disabled'))
+            console.log(selected.attr('disabled'));
 
             if(selected.attr('disabled') == null) {
                 console.log(selected.attr('id'));
                 console.log(selected);
 
-                $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th>"+selected.attr('prenom')+"</th> <th>"+selected.attr('nom')+"</th> <th>"+selected.attr('entreprise')+"</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
+                $("#missionnaireList").append("<tr id=" + selected.attr('id') + "> <th id='" + selected.attr('prenom') + "'>"+selected.attr('prenom')+"</th> <th id='" + selected.attr('nom') + "'>"+selected.attr('nom')+"</th> <th>"+selected.attr('entreprise')+"</th> <th><button class='btn btn-danger mr-2 deleteMissionnaire' type='button'><div class='fas fa-minus'></div></button></th> </tr>");
 
                 //$("#selecteurMissionnaire option:selected").prop('disabled', true);
             }else{
@@ -117,7 +117,13 @@ $(document).ready(function(){
             console.log(missionnaireList.length);
             
             let missionnaires = [];
-            for (i = 0; i < missionnaireList.length; i++) missionnaires.push(missionnaireList[i].id);
+            for (i = 0; i < missionnaireList.length; i++) {
+                missionnaires.push( { 
+                    'id' : missionnaireList[i].id, 
+                    'nom' : missionnaireList[i].cells[1].id, 
+                    'prenom' : missionnaireList[i].cells[0].id
+                });
+            }
 
             console.log(missionnaires);
 
@@ -126,13 +132,13 @@ $(document).ready(function(){
                 heureArrivee: $('#heureArrivee').val(),
                 dateDepart: $('#dateDepart').val(),
                 heureDepart: $('#heureDepart').val(),
-                missionnaires: missionnaires,
+                missionnaires: JSON.stringify(missionnaires),
                 lieuInstallation: $('#emplacement').val(),
                 alimElectrique: $('#puissanceNecessaire').val(),
                 alimSecourue: $('#secouru').prop("checked")
             } );
 
-            window.location.href = "/users/profile";
+            //window.location.href = "/users/profile";
 
         });
 

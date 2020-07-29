@@ -3,8 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 // Init models
-let User = require('../models/user');
+let Missionnaire = require('../models/missionnaire');
 let Emplacement = require('../models/emplacement');
+let Mission = require('../models/mission');
 
 // Admin route (GET)
 router.get('/', ensureAuthenticated, (req, res) => {
@@ -42,8 +43,20 @@ router.post('/add_location', ensureAuthenticated, (req, res) => {
 
 // Add location route (GET)
 router.get('/attribuer_chambre', ensureAuthenticated, (req, res) => {
-    res.render('admin/attribuer_chambre', {
-        title: 'Attribution des chambres'
+    Mission.find( {} ).sort([['dateArrivee', -1]]).then( (missions) => {
+        let missionList = [];
+
+        //On itere toutes les missions
+        missions.forEach(mission => {
+            missionList.push(mission);
+        });
+
+        //console.log(missionList);
+
+        res.render('admin/attribuer_chambre', {
+            title: "Attribution des chambres",
+            missions: missionList
+        });
     });
 });
 

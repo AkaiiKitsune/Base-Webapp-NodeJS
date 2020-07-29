@@ -86,17 +86,28 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
         //Si on trouve un id, on recupere ensuite les infos de celui-ci
         Missionnaire.findById(person.missionnaire, (err, person) => {
             if (err) return console.error(err);
-            if(!person) req.flash('danger', 'Veuillez renseigner vos informations');
-            Mission.find( { missionnaires : person._id.toString() }, (err, missions) => {
-                
-                //Et on Affiche la page
+            if(!person) {
+                req.flash('danger', 'Veuillez renseigner vos informations');
                 res.render('users/profile', {
                     title: "Profil de " + req.user.username,
                     user: req.user,
-                    missionnaire: person,
-                    missions: missions
+                    missionnaire: person
                 });
-            })
+            }else{
+                //Mission.find( { missionnaires : person._id.toString() }, (err, missions) => {
+                Mission.find( {missionnaires: {$elemMatch: {"id" : person._id.toString()}}}, (err, missions) => {
+    
+                    console.log(missions);
+
+                    //Et on Affiche la page
+                    res.render('users/profile', {
+                        title: "Profil de " + req.user.username,
+                        user: req.user,
+                        missionnaire: person,
+                        missions: missions
+                    });
+                });
+            }
         });
     });
 });
@@ -112,7 +123,7 @@ router.get('/profile/edit', ensureAuthenticated, (req, res) => {
 
             if(!person) {
                 cardtitle = 'Creation du profil';
-                person = new Missionnaire()
+                person = new Missionnaire();
             }
 
             res.render('users/edit_profile', {

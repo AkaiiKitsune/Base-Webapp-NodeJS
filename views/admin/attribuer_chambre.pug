@@ -4,3 +4,51 @@ block head
     title #{title}
 
 block content
+    if missions
+        .card
+            .card-header
+                h4 Missions
+            .card-body
+                table(class="table table-hover")
+                    thead
+                        tr
+                            th Participants
+                            th Date Montée
+                            th Date Descente
+                            th Chambre
+                            th Edit
+                    each mission, i in missions
+                        tr
+                            thead
+                                tbody
+                                    tr(class=mission.chambre ? "table-success" : "table-danger")
+                                        th
+                                            each submission, i in mission.missionnaires
+                                                row
+                                                    ="►"
+                                                    =submission.nom + " " + submission.prenom
+                                                    br
+                                        th #{mission.dateArrivee}, à #{mission.heureArrivee}h
+                                        th #{mission.dateDepart}, à #{mission.heureDepart}h
+                                        th
+                                            if !mission.chambre
+                                                | Non définie
+                                            else
+                                                =mission.chambre
+                                        th
+                                            button.btn.btn-secondary.mr-2(class='addChambre', type='button', data-toggle="modal" data-target="#modal_"+mission._id)
+                                                .fas.fa-edit
+                                                
+                        .modal.fade(id="modal_"+mission._id tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true")
+                            .modal-dialog.modal-lg(role="document")
+                                .modal-content
+                                    .modal-header
+                                        h5.modal-title(id="exampleModalLabel") Modal title
+                                            button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                                <span aria-hidden="true">&times;</span>
+                                    .modal-body(style="background: #fff !important")
+                                        p corps
+
+                                    .modal-footer
+                                        button(type="button" class="btn btn-secondary" data-dismiss="modal") Close
+                                        button(type="button" class="btn btn-primary") Save changes

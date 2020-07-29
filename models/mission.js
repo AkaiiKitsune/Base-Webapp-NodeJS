@@ -37,6 +37,10 @@ let missionSchema = mongoose.Schema({
     alimSecourue:{
         type: String,
         required: true
+    },
+    chambre:{
+        type: String,
+        required: false
     }
 });
 

@@ -9,16 +9,9 @@ let Emplacement = require('../models/emplacement');
 let Mission = require('../models/mission');
 
 
-// Add mision route (GET)
+// Add miSsion route (GET)
 router.get('/add', ensureAuthenticated, ensureMissionnaire, (req, res) => {
     Emplacement.find({}).sort([['batiment', 1]]).then( (emplacements) => {
-        // let newEmplacement = new Emplacement({
-        //     batiment:"Nouveau",
-        //     detail:"Porte 15",
-        // });
-
-        // newEmplacement.save();
-
         User.findById(req.user._id, (err, user) => { if (err) return console.error(err);
             Missionnaire.findById(user.missionnaire, (err, missionnaire) => {
                 Missionnaire.find({}).then( (missionnaires) => {
@@ -43,27 +36,32 @@ router.post('/add', ensureAuthenticated, ensureMissionnaire, (req, res) => {
     //On renseigne ses valeurs
     User.findById(req.user._id, (err, user) => { if (err) return console.error(err);
         Missionnaire.findById(user.missionnaire, (err, missionnaire) => { if (err) return console.error(err);
+
+            let missionnaires = JSON.parse(req.body.missionnaires);
+
             mission.createur = missionnaire._id;
             mission.dateArrivee = req.body.dateArrivee;
             mission.heureArrivee = req.body.heureArrivee;
             mission.dateDepart = req.body.dateDepart;
             mission.heureDepart = req.body.heureDepart;
-            mission.missionnaires = req.body['missionnaires[]'];
+            mission.missionnaires = missionnaires;
             mission.lieuInstallation = req.body.lieuInstallation;
             mission.alimElectrique = req.body.alimElectrique;
             mission.alimSecourue = req.body.alimSecourue;
 
-            mission.save((err) => {
-                if(err) { 
-                    console.error(err); 
-                    req.flash('danger', 'Erreur lors de l\'ajout de la mission');
-                    res.redirect('/users/profile');
-                } 
-                else {
-                    req.flash('success', 'Mission ajoutée');
-                    res.redirect('/users/profile');
-                }
-            });
+            console.log(mission);
+
+            // mission.save((err) => {
+            //     if(err) { 
+            //         console.error(err); 
+            //         req.flash('danger', 'Erreur lors de l\'ajout de la mission');
+            //         res.redirect('/users/profile');
+            //     } 
+            //     else {
+            //         req.flash('success', 'Mission ajoutée');
+            //         res.redirect('/users/profile');
+            //     }
+            // });
         });
     });
 });

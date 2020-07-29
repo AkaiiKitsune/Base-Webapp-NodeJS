@@ -24,7 +24,7 @@ let missionnaireSchema = mongoose.Schema({
         required: true
     },
     numSecuriteSociale:{
-        type: Number,
+        type: String,
         required: true
     },
     adresseFacturation:{
