@@ -32,7 +32,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## A Propos
-
 ![Profile Screen Shot][profil-screenshot]
 
 Cette application a été réalisée dans le cadre de mon **stage de fin d'année** en seconde année de **DUT MMI à l'IUT de Tarbes**.
@@ -49,6 +48,9 @@ Elle devait en autre permettre de :
 
 L'idée était de faciliter le travail de gestion pour le personel qui gère l'organisation du pic. 
 
+
+
+<br/>
 
 ### Frameworks
 L'application utilise ces differentes librairies et frameworks pour fonctionner :
