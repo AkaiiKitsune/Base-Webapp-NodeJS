@@ -76,6 +76,7 @@ Et **le port 8080 doit etre accessible**.
 
 
 <br/>
+
 <!-- Prérequis -->
 ### Prérequis
 L'application a besoin de trois paquets pour fonctionner : Git, MongoDB et Nodejs.
@@ -101,6 +102,7 @@ sudo systemctl enable mongod
 
 
 <br/>
+
 <!-- Installation -->
 ### Installation
 1. Cloner le repo et entrer dans le repertoire de celui ci
@@ -127,6 +129,7 @@ Un serveur nodemon demarre, il relancera l'application si des modifications sont
 
 
 <br/>
+
 <!-- Installation -->
 ### Configuration
 Il faut avant toute chose creer le compte administrateur et lui donner ses droits. La modification de droits utilisateurs demande un acces au terminal de la base de donnée MongoDB, et c'est la seule operation demandant a un acces direct a celle ci.
@@ -158,6 +161,7 @@ Lorsque celle-cies sont ajoutées, la configuration de base peut etre considér�
 
 
 <br/>
+
 <!-- USAGE EXAMPLES -->
 ## Utilisation
 Après avoir crée un compte utilisateur, l'interface va demander de specifier les informations du missionnaire lié a ce compte.
