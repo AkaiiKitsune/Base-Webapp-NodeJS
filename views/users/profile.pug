@@ -68,13 +68,12 @@ block content
                             th Participants
                             th Date Montée
                             th Date Descente
-                        
+                            th Chambre
                         
                         each mission, i in missions
-                            tr
                                 thead
                                     tbody
-                                        tr
+                                        tr(class=mission.chambre ? "table-success" : "table-danger")
                                             th
                                                 each submission, i in mission.missionnaires
                                                     row
@@ -89,5 +88,10 @@ block content
 
                                             th #{mission.dateArrivee}, à #{mission.heureArrivee}h
                                             th #{mission.dateDepart}, à #{mission.heureDepart}h
+                                            th
+                                                if !mission.chambre
+                                                    | Non définie
+                                                else
+                                                    =mission.chambre
 
 
