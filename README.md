@@ -27,6 +27,7 @@
   * [Installation](#installation)
   * [Configuration](#configuration)
 * [Utilisation](#Utilisation)
+* [Commentaire sur le projet](#commentaire-sur-le-projet)
 
 
 
@@ -61,6 +62,7 @@ L'application utilise ces differentes librairies et frameworks pour fonctionner 
 * [Bootstrap-select](https://developer.snapappointments.com/bootstrap-select)
 * [JQuery](https://jquery.com)
 * [FontAwesome](https://fontawesome.com)
+
 
 
 
@@ -191,6 +193,20 @@ L'Administrateur a la possibilité de definir une chambre pour les missions :
 Les missions dont les chambres ont étés attribuées sont affichées en vert dans la liste des missions.
 ![Mission Valide Screen Shot][missionChambre-screenshot]
 
+
+
+
+<br/>
+
+<!-- Commentaire et conclusion -->
+## Commentaire sur le projet
+Bien que je n'ai pas su implementer tout ce que le cahier des charges me demandais d'integrer, je suis vraiment heureux d'avoir reussi à realiser le "peu" present sur le projet, car il a fallu que j'utilise des technologies que je n'avais jamais utilisé jusqu'a present.
+
+Ce projet m'as permis de découvrir de nouvelles façons de developper pour le web, notemment avec l'utilisation d'api POST.
+
+Malheuresement, le retard pris sur le developpement a été monstrueux. En effet, utiliser MongoDB d'un point de vue technique était justifié et plus logique qu'une base SQL standard, mais son principe de fonctionnement est fondamentalement different que celui d'une base de données SQL, et j'ai simplement pris trop de temps pour m'y habituer. D'autre part, certains aspects de mon architecture sont fondamentalement mauvais, notamment le besoin de parser des données depuis les page web, alors que j'aurai pu simplement les stoquers temporairement dans un tableau a l'aide d'un script jquery... 
+
+Quoi qu'il en soit, ce projet, bien qu'il m'ait appris enormement de choses, reste un echec car je n'ai pas reussi a integrer ce que mon tuteur m'as demandé dans les temps.
 
 
 
