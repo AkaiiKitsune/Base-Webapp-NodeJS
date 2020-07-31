@@ -32,8 +32,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## A Propos
-
-[profil-screenshot]
+[![Product Name Screen Shot][profil-screenshot]]
 
 Cette application a été réalisée dans le cadre de mon stage de fin d'année en seconde année de DUT MMI à l'IUT de Tarbes.
 J'avais pour devoir de réaliser une application de gestion de ressources pour l'Observatoire Midi-Pyrénées du Pic Du Midi de Bigorre (https://www.omp.eu/)
