@@ -138,7 +138,7 @@ $(document).ready(function(){
                 alimSecourue: $('#secouru').prop("checked")
             } );
 
-            //window.location.href = "/users/profile";
+            window.location.href = "/users/profile";
 
         });
 

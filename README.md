@@ -21,10 +21,11 @@
 ## Table of Contents
 
 * [A propos](#a-propos)
-  * [Frameworks](#Frameworks)
-* [Getting Started](#getting-started)
-  * [Prérequis](#Prérequis)
+  * [Frameworks](#frameworks)
+* [Pour commencer](#pour-commencer)
+  * [Prérequis](#prérequis)
   * [Installation](#installation)
+  * [Configuration](#configuration)
 * [Utilisation](#Utilisation)
 
 
@@ -32,44 +33,62 @@
 <!-- ABOUT THE PROJECT -->
 ## A Propos
 
-[![Product Name Screen Shot][product-screenshot]]
+[profil-screenshot]
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
+Cette application a été réalisée dans le cadre de mon stage de fin d'année en seconde année de DUT MMI à l'IUT de Tarbes.
+J'avais pour devoir de réaliser une application de gestion de ressources pour l'Observatoire Midi-Pyrénées du Pic Du Midi de Bigorre (https://www.omp.eu/)
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+Elle devait en autre permettre de :
+* Gerer les capacités d'accueil du Pic en permettant de :
+  * Reserver des chambres
+  * Affecter des missionnaires à leur chambres respectives
+  * Permettre de visualiser quelles chambres doivent etres entretenues ou pas.
+* Gerer les salles de reunions
+* Gerer les laisser passer
+* Permettre de générer des rapports financiers sur l'utilisation des chambres
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
+L'idée était de faciliter le travail de gestion pour le personel qui gère l'organisation du pic. 
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Frameworks
+L'application utilise ces differentes librairies et frameworks pour fonctionner :
+* [NodeJS](https://nodejs.org)
+* [Express](https://expressjs.com)
+* [Mongoose](https://mongoosejs.com)
 * [Bootstrap](https://getbootstrap.com)
+* [Bootstrap-select](https://developer.snapappointments.com/bootstrap-select)
 * [JQuery](https://jquery.com)
+* [FontAwesome](https://fontawesome.com)
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Pour commencer
+Cette application a été réalisée pour etre utilisée sur debian 10.4, en revanche toute distribution fait affaire tant que Node.js et MongoDB sont installés.
 
-Cette application a été réalisée pour etre utilisée sur debian. En revanche tout distribution fait affaire tant que Node et MongoDB sont installés.
+La machine doit avoir au minimum :
+* CPU : 2 cores minimum, 4 ou + recommendé
+* RAM : 2Go minimum, 4Goou+recommendé
+* Disque : 20Go minimum, 100Go ou + recommendé
 
+Et le port 8080 doit etre accessible.
+
+
+
+<!-- Prérequis -->
 ### Prérequis
-
 L'application a besoin de trois paquets pour fonctionner : Git, MongoDB et Nodejs.
 * git
 ```sh
 sudo apt install git
 ```
 
-* NodeJS
+* NodeJS (latest)
 ```sh
 sudo apt install nodejs
 ```
 
-* MongoDB
+* MongoDB (4.2 : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-debian/)
 ```sh
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
@@ -79,29 +98,84 @@ sudo systemctl start mongod
 sudo systemctl enable mongod
 ```
 
+
+
+<!-- Installation -->
 ### Installation
 1. Cloner le repo et entrer dans le repertoire de celui ci
 ```sh
 git clone https://github.com/AkaiiKitsune/OMP-GestionPic && cd ./OMP-GestionPic
 ```
+
 2. Installer les packets NPM
 ```sh
 npm install
 ```
-3. Ajouter la clé d'api dans /config/secrets.js (La clé est a générer sur https://api.insee.fr/catalogue/, dans la rubrique API Sirene V3)
+
+3. Ajouter la clé d'api dans /config/secrets.js (La clé est a générer sur https://api.insee.fr/catalogue/, dans la rubrique API Sirene V3, Le fichier n'existe pas, il faut le creer)
 ```JS
 module.exports={secretSirenAPI:'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'};
 ```
+
+4. Demarrer l'application (Le serveur devient alors disponible sur le port 8080 de la machine)
+```sh
+npm run start
+```
+Un serveur nodemon demarre, il relancera l'application si des modifications sont effectuées a son code source ou si un crash a lieu.
+
+
+
+<!-- Installation -->
+### Configuration
+Il faut avant toute chose creer le compte administrateur et lui donner ses droits. La modification de droits utilisateurs demande un acces au terminal de la base de donnée MongoDB, et c'est la seule operation demandant a un acces direct a celle ci.
+
+Il faut proceder de la sorte :
+1. Creer le compte administrateur sur l'interface web (en le nommant admin en minuscules, c'est important pour la commande qui va suivre)
+[register-screenshot]
+
+2. Acceder au terminal MongoDB :
+```sh
+mongo mongodb://localhost:27017/omp 
+```
+
+3. Executer la commande suivante :
+```sh
+db.users.findAndModify({ query: { username: "admin" }, update: { $set: { admin: "true"} } })
+```
+Elle permet de mettre a jour le profil administrateur afin de lui donner ses droits. On peux maintenant quiter la console mongo en executant la commande `exit`
+
+L'administrateur a maintenant acces au panel admin (Situé dans le menu dropdown).
+Il va devoir maintenant ajouter differents emplacements a la base de donnée :
+[emplacement-screenshot]
+
+Ces emplacements seront ensuite selectionnables dans les interfaces de creation de mission et d'attribution des chambres.
+
+
+Lorsque celle-cies sont ajoutées, la configuration de base peut etre considérée terminée, et l'utilisateur admin n'est plus important pour l'instant.
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Utilisation
+Après avoir crée un compte utilisateur, l'interface va demander de specifier les informations du missionnaire lié a ce compte.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Il suffit de remplir les informations demandées :
+[missionnaire-screenshot]
+
+
+Une fois le compte crée, le profil de l'utilisateur ressemblera à ceci :
+[profil-screenshot]
+
+L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié, et d'en ajouter de nouvelles :
+[addMission-screenshot]
 
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: images/screenshot.png
+[profil-screenshot]: images/profil.png
+[register-screenshot]: images/register.png
+[missionnaire-screenshot]: images/missionnaire.png
+[emplacement-screenshot]: images/emplacement.png
+[addMission-screenshot]: images/addMission.png
+[emplacement-screenshot]: images/emplacement.png
