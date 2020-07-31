@@ -1,0 +1,30 @@
+extends ../layout
+
+block head
+    title #{title}
+
+block content
+    form(method='POST', action='/admin/editer_mission/'+mission._id)
+        .card
+                .card-header
+                    h4 
+                        | Editer la mission 
+                        =mission._id
+                .card-body
+                    .row
+                        .col
+                            .input-group.mb-3
+                                .input-group-prepend
+                                    .input-group-text Chambre
+                                select.form-control(onChange="change(this.value);")
+                                    option(value="") Non définie
+                                    each chambre, i in chambres
+                                            option(value=chambre._id) #{chambre.batiment}, #{chambre.detail}
+                                input(type="hidden", value="", name="chambre_id", id="chambre_id")
+                .card-footer.text-center
+                    button.btn.btn-primary.mr-2(type='submit') Valider l'edit
+    
+    script.
+        function change(val){
+            $('#chambre_id').val(val);
+        }

@@ -87,14 +87,12 @@ app.get('/api/:id', (req, res) => {
     }, (error, response, body) => {
         let json = JSON.parse(body);
         res.send(json);
-    })
+    });
   });
 
 // Home route
 app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'Under construction'
-    });
+    res.redirect('/users/profile');
 });
 
 // Route Files

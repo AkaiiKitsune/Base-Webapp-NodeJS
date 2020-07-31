@@ -51,17 +51,17 @@ router.post('/add', ensureAuthenticated, ensureMissionnaire, (req, res) => {
 
             console.log(mission);
 
-            // mission.save((err) => {
-            //     if(err) { 
-            //         console.error(err); 
-            //         req.flash('danger', 'Erreur lors de l\'ajout de la mission');
-            //         res.redirect('/users/profile');
-            //     } 
-            //     else {
-            //         req.flash('success', 'Mission ajoutée');
-            //         res.redirect('/users/profile');
-            //     }
-            // });
+            mission.save((err) => {
+                if(err) { 
+                    console.error(err); 
+                    req.flash('danger', 'Erreur lors de l\'ajout de la mission');
+                    res.redirect('/users/profile');
+                } 
+                else {
+                    req.flash('success', 'Mission ajoutée');
+                    res.redirect('/users/profile');
+                }
+            });
         });
     });
 });

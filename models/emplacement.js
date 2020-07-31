@@ -13,6 +13,10 @@ let emplacementSchema = mongoose.Schema({
     chambre:{
         type: Boolean,
         required: false
+    },
+    status:{
+        type: String,
+        required: false
     }
 });
 

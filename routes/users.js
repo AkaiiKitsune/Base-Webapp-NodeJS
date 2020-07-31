@@ -96,8 +96,6 @@ router.get('/profile', ensureAuthenticated, (req, res) => {
             }else{
                 //Mission.find( { missionnaires : person._id.toString() }, (err, missions) => {
                 Mission.find( {missionnaires: {$elemMatch: {"id" : person._id.toString()}}}, (err, missions) => {
-    
-                    console.log(missions);
 
                     //Et on Affiche la page
                     res.render('users/profile', {
