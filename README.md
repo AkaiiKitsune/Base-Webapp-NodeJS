@@ -176,7 +176,8 @@ Une fois le compte crée, le profil de l'utilisateur ressemblera à ceci :
 L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié, et d'en ajouter de nouvelles :
 ![Add Mission Screen Shot][addMission-screenshot]
 
-
+Les missions ajoutées s'affichent ensuite dans le profil de l'utilisateur :
+![Mission List Screen Shot][missionList-screenshot]
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -185,4 +186,4 @@ L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié,
 [missionnaire-screenshot]: images/missionnaire.png
 [emplacement-screenshot]: images/emplacement.png
 [addMission-screenshot]: images/addMission.png
-[emplacement-screenshot]: images/emplacement.png
+[missionList-screenshot]: images/missionList.png
