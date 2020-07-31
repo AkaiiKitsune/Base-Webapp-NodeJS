@@ -181,6 +181,18 @@ L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié,
 Les missions ajoutées s'affichent ensuite dans le profil de l'utilisateur :
 ![Mission List Screen Shot][missionList-screenshot]
 
+<br/>
+
+L'Administrateur a la possibilité de definir une chambre pour les missions :
+![Admin Chambre Screen Shot][adminChambre-screenshot]
+
+<br/>
+
+Les missions dont les chambres ont étés attribuées sont affichées en vert dans la liste des missions.
+![Mission Valide Screen Shot][missionChambre-screenshot]
+
+
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [profil-screenshot]: images/profil.png
@@ -189,3 +201,5 @@ Les missions ajoutées s'affichent ensuite dans le profil de l'utilisateur :
 [emplacement-screenshot]: images/emplacement.png
 [addMission-screenshot]: images/addMission.png
 [missionList-screenshot]: images/missionList.png
+[adminChambre-screenshot]: images/adminChambre.png
+[missionChambre-screenshot]: images/missionChambre.png
