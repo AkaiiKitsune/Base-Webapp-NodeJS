@@ -33,7 +33,7 @@
 <!-- ABOUT THE PROJECT -->
 ## A Propos
 
-[profil-screenshot]
+![Profile Screen Shot][profil-screenshot]
 
 Cette application a été réalisée dans le cadre de mon **stage de fin d'année** en seconde année de **DUT MMI à l'IUT de Tarbes**.
 J'avais pour devoir de réaliser une application de gestion de ressources pour l'**Observatoire Midi-Pyrénées** du Pic Du Midi de Bigorre (https://www.omp.eu/)
@@ -136,7 +136,7 @@ Il faut avant toute chose creer le compte administrateur et lui donner ses droit
 
 Il faut proceder de la sorte :
 1. Creer le compte administrateur sur l'interface web (en le nommant admin en minuscules, c'est important pour la commande qui va suivre)
-[register-screenshot]
+![Register Screen Shot][register-screenshot]
 
 2. Acceder au terminal MongoDB :
 ```sh
@@ -151,7 +151,7 @@ Elle permet de mettre a jour le profil administrateur afin de lui donner ses dro
 
 L'administrateur a maintenant acces au panel admin (Situé dans le menu dropdown).
 Il va devoir maintenant ajouter differents emplacements a la base de donnée :
-[emplacement-screenshot]
+![Emplacement Screen Shot][emplacement-screenshot]
 
 Ces emplacements seront ensuite selectionnables dans les interfaces de creation de mission et d'attribution des chambres.
 
@@ -167,14 +167,14 @@ Lorsque celle-cies sont ajoutées, la configuration de base peut etre considér�
 Après avoir crée un compte utilisateur, l'interface va demander de specifier les informations du missionnaire lié a ce compte.
 
 Il suffit de remplir les informations demandées :
-[missionnaire-screenshot]
+![Missionnaire Screen Shot][missionnaire-screenshot]
 
 
 Une fois le compte crée, le profil de l'utilisateur ressemblera à ceci :
-[profil-screenshot]
+![Profile Screen Shot][profil-screenshot]
 
 L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié, et d'en ajouter de nouvelles :
-[addMission-screenshot]
+![Add Mission Screen Shot][addMission-screenshot]
 
 
 
