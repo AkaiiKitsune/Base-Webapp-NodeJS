@@ -1,5 +1,5 @@
 <!-- PROJECT LOGO -->
-<br />
+<br/>
 <p align="center">
   <a href="https://github.com/AkaiiKitsune/OMP-GestionPic">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
@@ -34,8 +34,8 @@
 ## A Propos
 ![Profile Screen Shot][profil-screenshot]
 
-Cette application a été réalisée dans le cadre de mon stage de fin d'année en seconde année de DUT MMI à l'IUT de Tarbes.
-J'avais pour devoir de réaliser une application de gestion de ressources pour l'Observatoire Midi-Pyrénées du Pic Du Midi de Bigorre (https://www.omp.eu/)
+Cette application a été réalisée dans le cadre de mon **stage de fin d'année** en seconde année de **DUT MMI à l'IUT de Tarbes**.
+J'avais pour devoir de réaliser une application de gestion de ressources pour l'**Observatoire Midi-Pyrénées** du Pic Du Midi de Bigorre (https://www.omp.eu/)
 
 Elle devait en autre permettre de :
 * Gerer les capacités d'accueil du Pic en permettant de :
@@ -48,6 +48,9 @@ Elle devait en autre permettre de :
 
 L'idée était de faciliter le travail de gestion pour le personel qui gère l'organisation du pic. 
 
+
+
+<br/>
 
 ### Frameworks
 L'application utilise ces differentes librairies et frameworks pour fonctionner :
@@ -63,16 +66,18 @@ L'application utilise ces differentes librairies et frameworks pour fonctionner 
 
 <!-- GETTING STARTED -->
 ## Pour commencer
-Cette application a été réalisée pour etre utilisée sur debian 10.4, en revanche toute distribution fait affaire tant que Node.js et MongoDB sont installés.
+Cette application a été réalisée pour etre utilisée sur **Debian 10.4**, en revanche toute distribution fait affaire tant que Node.js et MongoDB sont installés.
 
 La machine doit avoir au minimum :
 * CPU : 2 cores minimum, 4 ou + recommendé
 * RAM : 2Go minimum, 4Goou+recommendé
 * Disque : 20Go minimum, 100Go ou + recommendé
 
-Et le port 8080 doit etre accessible.
+Et **le port 8080 doit etre accessible**.
 
 
+
+<br/>
 
 <!-- Prérequis -->
 ### Prérequis
@@ -87,7 +92,7 @@ sudo apt install git
 sudo apt install nodejs
 ```
 
-* MongoDB (4.2 : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-debian/)
+* MongoDB (4.2 : *https://docs.mongodb.com/manual/tutorial/install-mongodb-on-debian*)
 ```sh
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
@@ -98,6 +103,7 @@ sudo systemctl enable mongod
 ```
 
 
+<br/>
 
 <!-- Installation -->
 ### Installation
@@ -111,7 +117,7 @@ git clone https://github.com/AkaiiKitsune/OMP-GestionPic && cd ./OMP-GestionPic
 npm install
 ```
 
-3. Ajouter la clé d'api dans /config/secrets.js (La clé est a générer sur https://api.insee.fr/catalogue/, dans la rubrique API Sirene V3, Le fichier n'existe pas, il faut le creer)
+3. Ajouter la clé d'api dans /config/secrets.js (La clé est a générer sur https://api.insee.fr/catalogue/, dans la rubrique API Sirene V3)
 ```JS
 module.exports={secretSirenAPI:'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'};
 ```
@@ -123,6 +129,8 @@ npm run start
 Un serveur nodemon demarre, il relancera l'application si des modifications sont effectuées a son code source ou si un crash a lieu.
 
 
+
+<br/>
 
 <!-- Installation -->
 ### Configuration
@@ -154,6 +162,8 @@ Lorsque celle-cies sont ajoutées, la configuration de base peut etre considér�
 
 
 
+<br/>
+
 <!-- USAGE EXAMPLES -->
 ## Utilisation
 Après avoir crée un compte utilisateur, l'interface va demander de specifier les informations du missionnaire lié a ce compte.
@@ -168,7 +178,8 @@ Une fois le compte crée, le profil de l'utilisateur ressemblera à ceci :
 L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié, et d'en ajouter de nouvelles :
 ![Add Mission Screen Shot][addMission-screenshot]
 
-
+Les missions ajoutées s'affichent ensuite dans le profil de l'utilisateur :
+![Mission List Screen Shot][missionList-screenshot]
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -177,4 +188,4 @@ L'utilisateur a ici la possibilité de visionner les missions qu'il a planifié,
 [missionnaire-screenshot]: images/missionnaire.png
 [emplacement-screenshot]: images/emplacement.png
 [addMission-screenshot]: images/addMission.png
-[emplacement-screenshot]: images/emplacement.png
+[missionList-screenshot]: images/missionList.png
