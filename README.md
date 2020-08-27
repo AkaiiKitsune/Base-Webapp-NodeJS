@@ -206,9 +206,6 @@ Ce projet m'as permis de découvrir de nouvelles façons de developper pour le w
 
 Malheuresement, le retard pris sur le developpement a été monstrueux. En effet, utiliser MongoDB d'un point de vue technique était justifié et plus logique qu'une base SQL standard, mais son principe de fonctionnement est fondamentalement different que celui d'une base de données SQL, et j'ai simplement pris trop de temps pour m'y habituer. D'autre part, certains aspects de mon architecture sont fondamentalement mauvais, notamment le besoin de parser des données depuis les page web, alors que j'aurai pu simplement les stoquers temporairement dans un tableau a l'aide d'un script jquery... 
 
-Quoi qu'il en soit, ce projet, bien qu'il m'ait appris enormement de choses, reste un echec car je n'ai pas reussi a integrer ce que mon tuteur m'as demandé dans les temps.
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [profil-screenshot]: images/profil.png
