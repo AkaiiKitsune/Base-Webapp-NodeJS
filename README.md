@@ -202,7 +202,7 @@ Les missions dont les chambres ont étés attribuées sont affichées en vert da
 ## Commentaire sur le projet
 Bien que je n'ai pas su implementer tout ce que le cahier des charges me demandais d'integrer, je suis vraiment heureux d'avoir reussi à realiser le "peu" present sur le projet, car il a fallu que j'utilise des technologies que je n'avais jamais utilisé jusqu'a present.
 
-Ce projet m'as permis de découvrir de nouvelles façons de developper pour le web, notemment avec l'utilisation d'api POST.
+Ce projet m'as permis de découvrir de nouvelles façons de developper pour le web, notemment avec l'utilisation d'API REST.
 
 Malheuresement, le retard pris sur le developpement a été monstrueux. En effet, utiliser MongoDB d'un point de vue technique était justifié et plus logique qu'une base SQL standard, mais son principe de fonctionnement est fondamentalement different que celui d'une base de données SQL, et j'ai simplement pris trop de temps pour m'y habituer. D'autre part, certains aspects de mon architecture sont fondamentalement mauvais, notamment le besoin de parser des données depuis les page web, alors que j'aurai pu simplement les stoquers temporairement dans un tableau a l'aide d'un script jquery... 
 
